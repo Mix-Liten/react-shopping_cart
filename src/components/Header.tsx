@@ -1,8 +1,20 @@
-import { Box, Flex, HStack, HTMLChakraProps, chakra, useDisclosure, useUpdateEffect, Heading } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  HStack,
+  HTMLChakraProps,
+  chakra,
+  useDisclosure,
+  useUpdateEffect,
+  Heading,
+  Avatar,
+  AvatarBadge,
+} from '@chakra-ui/react'
 import { useScroll } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { MobileNavButton, MobileNavContent } from './MobileNav'
 import { NavLink } from 'react-router-dom'
+import { ShoppingCartIcon } from './Icons'
 
 function HeaderContent() {
   const mobileNav = useDisclosure()
@@ -18,7 +30,7 @@ function HeaderContent() {
         <Flex align="center">
           <NavLink to="/">
             <chakra.div display="block" aria-label="Chakra UI, Back to homepage">
-              <Box minW="3rem" display={{ base: 'block', md: 'block' }}>
+              <Box minW="3rem">
                 <Heading as="h1" color="orange.900">
                   Shop.
                 </Heading>
@@ -28,7 +40,20 @@ function HeaderContent() {
         </Flex>
 
         <Flex justify="flex-end" w="100%" align="center" color="gray.400" maxW="1100px">
-          <HStack spacing="5" display={{ base: 'none', md: 'flex' }}></HStack>
+          <HStack spacing="5" color="orange.900" mr="4">
+            <Avatar bg="yellow.500" icon={<ShoppingCartIcon />} border="1px" fontSize="1.8em">
+              <AvatarBadge
+                boxSize="1em"
+                borderWidth={1}
+                bg="red.500"
+                fontSize="0.7em"
+                w="1.8em"
+                transform="translate(40%, 40%)"
+              >
+                5
+              </AvatarBadge>
+            </Avatar>
+          </HStack>
           <HStack spacing="5">
             <MobileNavButton ref={mobileNavBtnRef} aria-label="Open Menu" onClick={mobileNav.onOpen} />
           </HStack>
