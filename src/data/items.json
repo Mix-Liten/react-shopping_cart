@@ -3,24 +3,28 @@
     "id": 1,
     "name": "Book",
     "price": 10.99,
+    "description": "Discover great reads! Our online bookstore offers a diverse selection of books for every interest. Fast shipping and easy checkout. Shop now!",
     "imgUrl": "/imgs/book.jpg"
   },
   {
     "id": 2,
     "name": "Computer",
     "price": 1199,
+    "description": "Get the latest tech! Our computer store offers high-quality PCs, laptops, and accessories for work and play. Fast shipping and easy checkout. Shop now!",
     "imgUrl": "/imgs/computer.jpg"
   },
   {
     "id": 3,
     "name": "Banana",
     "price": 1.05,
+    "description": "Fresh and delicious bananas for sale! Our produce is carefully selected and delivered straight to your door. Order now for healthy snacking.",
     "imgUrl": "/imgs/banana.jpg"
   },
   {
     "id": 4,
     "name": "Car",
     "price": 14000,
+    "description": "Find your dream car! Our dealership offers a wide selection of reliable vehicles at competitive prices. Visit us today for a test drive.",
     "imgUrl": "/imgs/car.jpg"
   }
 ]
