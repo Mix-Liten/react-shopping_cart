@@ -3,6 +3,7 @@ import RootLayout from './layouts/RootLayout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Store from './pages/Store'
+import { ShoppingCartProvider } from './context/ShoppingCartContext'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,7 +16,11 @@ const router = createBrowserRouter(
 )
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <ShoppingCartProvider>
+      <RouterProvider router={router} />
+    </ShoppingCartProvider>
+  )
 }
 
 export default App

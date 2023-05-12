@@ -1,5 +1,6 @@
 import { Button, Card, CardBody, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import { formatCurrency } from '../utils/formatCurrency'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 type StoreItemProps = {
   id: number
@@ -9,7 +10,9 @@ type StoreItemProps = {
   imgUrl: string
 }
 
-export default function StoreItem({ name, price, description, imgUrl }: StoreItemProps) {
+export default function StoreItem({ id, name, price, description, imgUrl }: StoreItemProps) {
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart()
+  const quantity = getItemQuantity(id)
   return (
     <Card>
       <CardBody>
@@ -20,17 +23,28 @@ export default function StoreItem({ name, price, description, imgUrl }: StoreIte
           <Text color="blue.400" fontSize="2xl" textAlign="right">
             {formatCurrency(price)}
           </Text>
-          <Button colorScheme="cyan">+ Add To Cart</Button>
-          <Flex flexWrap="wrap" direction="column" gap="4">
-            <Flex justifyContent="center" alignItems="center" gap="4">
-              <Button colorScheme="cyan">-</Button>
-              <Text>99</Text>
-              <Button colorScheme="cyan">+</Button>
+          {quantity === 0 ? (
+            <Button colorScheme="cyan" onClick={() => increaseCartQuantity(id)}>
+              + Add To Cart
+            </Button>
+          ) : (
+            <Flex flexWrap="wrap" direction="column" gap="4">
+              <Flex justifyContent="center" alignItems="center" gap="4">
+                <Button colorScheme="cyan" onClick={() => decreaseCartQuantity(id)}>
+                  -
+                </Button>
+                <Text>{quantity}</Text>
+                <Button colorScheme="cyan" onClick={() => increaseCartQuantity(id)}>
+                  +
+                </Button>
+              </Flex>
+              <Flex justifyContent="center" alignItems="center">
+                <Button colorScheme="red" onClick={() => removeFromCart(id)}>
+                  remove
+                </Button>
+              </Flex>
             </Flex>
-            <Flex justifyContent="center" alignItems="center">
-              <Button colorScheme="red">remove</Button>
-            </Flex>
-          </Flex>
+          )}
         </Stack>
       </CardBody>
     </Card>
