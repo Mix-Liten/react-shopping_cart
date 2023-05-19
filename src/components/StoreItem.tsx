@@ -19,7 +19,7 @@ export default function StoreItem({ id, name, price, description, imgUrl }: Stor
         <Image src={imgUrl} h="200px" w="100%" objectFit="cover" />
         <Stack mt="6" spacing="3">
           <Heading size="md">{name}</Heading>
-          <Text>{description}</Text>
+          <Text noOfLines={2}>{description}</Text>
           <Text color="blue.400" fontSize="2xl" textAlign="right">
             {formatCurrency(price)}
           </Text>
