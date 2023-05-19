@@ -30,11 +30,13 @@ export default function StoreItem({ id, name, price, description, imgUrl }: Stor
           ) : (
             <Flex flexWrap="wrap" direction="column" gap="4">
               <Flex justifyContent="center" alignItems="center" gap="4">
-                <Button colorScheme="cyan" onClick={() => decreaseCartQuantity(id)}>
+                <Button colorScheme="cyan" w="100%" fontSize="2xl" onClick={() => decreaseCartQuantity(id)}>
                   -
                 </Button>
-                <Text>{quantity}</Text>
-                <Button colorScheme="cyan" onClick={() => increaseCartQuantity(id)}>
+                <Text w="25%" textAlign="center" fontSize="2xl">
+                  {quantity}
+                </Text>
+                <Button colorScheme="cyan" w="100%" fontSize="2xl" onClick={() => increaseCartQuantity(id)}>
                   +
                 </Button>
               </Flex>

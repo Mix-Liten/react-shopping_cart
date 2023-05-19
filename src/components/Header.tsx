@@ -9,14 +9,18 @@ import {
   Heading,
   Avatar,
   AvatarBadge,
+  Button,
+  ButtonProps,
 } from '@chakra-ui/react'
 import { useScroll } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { MobileNavButton, MobileNavContent } from './MobileNav'
 import { NavLink } from 'react-router-dom'
 import { ShoppingCartIcon } from './Icons'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 
 function HeaderContent() {
+  const { openCart, cartQuantity } = useShoppingCart()
   const mobileNav = useDisclosure()
   const mobileNavBtnRef = useRef<HTMLButtonElement>(null)
 
@@ -40,20 +44,42 @@ function HeaderContent() {
         </Flex>
 
         <Flex justify="flex-end" w="100%" align="center" color="gray.400" maxW="1100px">
-          <HStack spacing="5" color="orange.900" mr="4">
-            <Avatar bg="yellow.500" icon={<ShoppingCartIcon />} border="1px" fontSize="1.8em">
-              <AvatarBadge
-                boxSize="1em"
-                borderWidth={1}
-                bg="red.500"
-                fontSize="0.7em"
-                w="1.8em"
-                transform="translate(40%, 40%)"
+          {cartQuantity > 0 && (
+            <HStack spacing="5" color="orange.900" mr="4">
+              <Avatar
+                as={(props: ButtonProps) => (
+                  <Button
+                    {...props}
+                    colorScheme="yellow"
+                    _hover={{ bg: 'yellow.600' }}
+                    _active={{
+                      bg: 'yellow.400',
+                      borderColor: 'blackAlpha.400',
+                      transform: 'scale(0.9)',
+                      color: 'blackAlpha.700',
+                      boxShadow: 'dark-lg',
+                    }}
+                  />
+                )}
+                bg="yellow.500"
+                icon={<ShoppingCartIcon />}
+                border="1px"
+                fontSize="1.8em"
+                onClick={openCart}
               >
-                5
-              </AvatarBadge>
-            </Avatar>
-          </HStack>
+                <AvatarBadge
+                  boxSize="1em"
+                  borderWidth={1}
+                  bg="red.500"
+                  fontSize="0.7em"
+                  w="1.8em"
+                  transform="translate(40%, 40%)"
+                >
+                  {cartQuantity}
+                </AvatarBadge>
+              </Avatar>
+            </HStack>
+          )}
           <HStack spacing="5">
             <MobileNavButton ref={mobileNavBtnRef} aria-label="Open Menu" onClick={mobileNav.onOpen} />
           </HStack>
