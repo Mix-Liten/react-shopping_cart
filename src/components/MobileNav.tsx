@@ -12,6 +12,7 @@ import {
   useBreakpointValue,
   useColorModeValue,
   useUpdateEffect,
+  Image,
 } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { NavLink, useLocation } from 'react-router-dom'
@@ -113,9 +114,12 @@ export function MobileNavContent(props: MobileNavContentProps) {
             >
               <Box>
                 <Flex justify="space-between" px="6" pt="5" pb="4">
-                  <Heading as="h1" color="orange.900">
-                    Shop.
-                  </Heading>
+                  <Flex>
+                    <Heading as="h1" color="orange.900">
+                      Shop.
+                    </Heading>
+                    <Image src="/logo.svg" boxSize="40px" />
+                  </Flex>
                   <HStack spacing="5">
                     <CloseButton ref={closeBtnRef} onClick={onClose} />
                   </HStack>

@@ -11,6 +11,7 @@ import {
   AvatarBadge,
   Button,
   ButtonProps,
+  Image,
 } from '@chakra-ui/react'
 import { useScroll } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
@@ -35,9 +36,12 @@ function HeaderContent() {
           <NavLink to="/">
             <chakra.div display="block" aria-label="Chakra UI, Back to homepage">
               <Box minW="3rem">
-                <Heading as="h1" color="orange.900">
-                  Shop.
-                </Heading>
+                <Flex>
+                  <Heading as="h1" color="orange.900">
+                    Shop.
+                  </Heading>
+                  <Image src="/logo.svg" boxSize='40px' />
+                </Flex>
               </Box>
             </chakra.div>
           </NavLink>
